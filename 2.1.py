@@ -8,10 +8,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import matplotlib.pyplot as plt
 
-# matplotlib 中文显示设置
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus'] = False
-
 # 固定随机种子，保证结果可复现
 SEED = 42
 np.random.seed(SEED)
