@@ -93,37 +93,3 @@ print(f"RMSE     : {rmse:.4f}")
 print(f"MAE      : {mae:.4f}")
 print(f"R^2      : {r2:.4f}")
 
-# ================= 5. 可视化展示 =================
-fig, axes = plt.subplots(1, 3, figsize=(18, 5.5))
-
-# (1) 训练损失曲线：观察是否收敛
-axes[0].plot(loss_history, color='tab:blue', lw=1.8)
-axes[0].set_title('训练损失曲线 (MSE)')
-axes[0].set_xlabel('Epoch')
-axes[0].set_ylabel('Loss')
-axes[0].grid(True, linestyle='--', alpha=0.5)
-
-# (2) 真实值 vs 预测值：点越贴近红色对角线说明预测越准
-axes[1].scatter(y_test_np, y_pred_np, alpha=0.5, s=18, color='tab:blue', label='测试样本')
-lim = [min(y_test_np.min(), y_pred_np.min()), max(y_test_np.max(), y_pred_np.max())]
-axes[1].plot(lim, lim, 'r--', lw=2, label='完美预测线 y = x')
-axes[1].set_title(f'真实值 vs 预测值 (R2 = {r2:.3f})')
-axes[1].set_xlabel('真实值 y')
-axes[1].set_ylabel('预测值 y_hat')
-axes[1].legend()
-axes[1].grid(True, linestyle='--', alpha=0.5)
-
-# (3) 残差图：随机分布且无规律说明模型残差中已无可用信息
-residuals = y_test_np - y_pred_np
-axes[2].scatter(y_pred_np, residuals, alpha=0.5, s=18, color='tab:orange')
-axes[2].axhline(0, color='r', linestyle='--', lw=2)
-axes[2].set_title('残差图 (Residuals)')
-axes[2].set_xlabel('预测值 y_hat')
-axes[2].set_ylabel('残差 y - y_hat')
-axes[2].grid(True, linestyle='--', alpha=0.5)
-
-plt.tight_layout()
-plt.savefig('result.png', dpi=150, bbox_inches='tight')   # 保存图片，方便提交
-plt.show()
-
-
