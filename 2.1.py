@@ -38,7 +38,6 @@ y_test_t = torch.tensor(y_test, dtype=torch.float32).view(-1, 1)
 
 # ================= 2. 搭建线性回归模型（不含隐藏层） =================
 class LinearRegressionModel(nn.Module):
-    """单层全连接网络：y = XW + b，等价于最小二乘线性回归"""
 
     def __init__(self, in_features):
         super().__init__()
@@ -50,11 +49,6 @@ class LinearRegressionModel(nn.Module):
 
 input_dim = X_train.shape[1]
 model = LinearRegressionModel(input_dim)
-
-# 打印模型结构
-print("========== 模型结构 ==========")
-print(model)
-print("==============================")
 
 # ================= 3. 模型训练 =================
 criterion = nn.MSELoss()                                  # 回归任务常用均方误差
